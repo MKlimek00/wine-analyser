@@ -2,7 +2,7 @@
 repo na projekt na zaliczenie z programowania w R
 
 ## uruchamianie aplikacji w terminalu z RStudio
-```
+```R
 shiny::runApp("wine-analyser/app.R")
 ```
 
@@ -17,5 +17,5 @@ shiny::runApp("wine-analyser/app.R")
 - [ ] Dodanie wizualizacji -> współczynniki regresji i rozkładu błędu
 
 
-```
+---
 Autorzy: [Maciej Klimek](https://github.com/mklimek00), [Mateusz Stryjek](https://github.com/mstryjek)
