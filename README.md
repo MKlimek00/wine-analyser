@@ -3,7 +3,7 @@ repo na projekt na zaliczenie z programowania w R
 
 ## uruchamianie aplikacji w terminalu z RStudio
 ```R
-shiny::runApp("wine-analyser/app.R")
+shiny::runApp("wine-analyser/")
 ```
 
 ## TODO
