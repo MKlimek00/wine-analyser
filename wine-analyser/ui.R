@@ -13,21 +13,19 @@ library(shiny)
 fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Wine Analyser"),
 
-    # Sidebar with a slider input for number of bins
+    # Interactive parts
     sidebarLayout(
+        # get inputs
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            textInput("text", "wpisz jakiś tekst"),
         ),
 
-        # Show a plot of the generated distribution
+        # Show outputs
         mainPanel(
-            plotOutput("distPlot")
+            h3("Wine Dataset"),
+            tableOutput("wine_data")
         )
     )
 )
