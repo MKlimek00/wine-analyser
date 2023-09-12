@@ -9,7 +9,7 @@ shiny::runApp("wine-analyser/")
 ## TODO
 - [X] Dodać zbiór danych "Red Wine Quality" - UCI Machine Learning
 - [X] Wczytywanie danych ze zbioru
-- [ ] Przygotowanie interfejsu do wybierania danych 
+- [X] Przygotowanie interfejsu do wybierania danych 
 - [ ] Wstępne przetwarzanie -> normalizacja rozkładów
 - [ ] Wstępne przetwarzanie -> usunięcie outliers
 - [ ] Analiza statystyczna zbioru danych

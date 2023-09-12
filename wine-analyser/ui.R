@@ -1,12 +1,3 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 
 # Define UI for application that draws a histogram
@@ -19,13 +10,23 @@ fluidPage(
     sidebarLayout(
         # get inputs
         sidebarPanel(
-            textInput("text", "wpisz jakiś tekst"),
+            selectInput("select_var", "Choose variable", c()),
+            br(),
+            checkboxInput("box_outliers", "Remove Outliers"),
+            checkboxInput("box_norm", "Normalize variable"),
+            checkboxInput("box_log", "Change to log"),
+            checkboxInput("box_regression", "Calculate regression"),
         ),
 
         # Show outputs
         mainPanel(
-            h3("Wine Dataset"),
-            tableOutput("wine_data")
+          tabsetPanel(type = "tab",
+                      tabPanel("Histograms and plots", plotOutput("Histogram")),
+                      tabPanel("Data",tableOutput("current_wine_data")),
+                      tabPanel("Regression coefficients"),
+                      tabPanel("Summary", tableOutput("summary"))
+                      
+                      )
+                  )
         )
-    )
 )
