@@ -1,15 +1,12 @@
 #helper functions
 
-remove_outliers <-function(dataframe)
+remove_outliers <-function(dataframe, name)
 {
-  names <- head(names(dataframe), -1)
-  for(n in names(dataframe))
-  {
-    quartiles <- quantile(dataframe[[n]], probs = c(0.25, 0.75))
-    IQR <- IQR(dataframe[[n]])
+    quartiles <- quantile(dataframe[[name]], probs = c(0.25, 0.75))
+    IQR <- IQR(dataframe[[name]])
     lower <- quartiles[1] - 1.5*IQR
     upper <- quartiles[2] + 1.5*IQR
-    dataframe <- subset(dataframe, dataframe[[n]] > lower & dataframe[[n]] < upper)
-  }
+    dataframe <- subset(dataframe, dataframe[[name]] > lower & dataframe[[name]] < upper)
+    
   return(dataframe)
 }

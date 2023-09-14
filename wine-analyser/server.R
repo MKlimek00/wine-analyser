@@ -16,7 +16,7 @@ function(input, output, session) {
       dt <- base_wine_data
       if(input$box_outliers)
       {
-        dt<- remove_outliers(dt)
+        dt<- remove_outliers(dt, selected_variable())
       }
       else
       {
