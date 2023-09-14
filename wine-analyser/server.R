@@ -1,4 +1,7 @@
 library(shiny)
+library(ggplot2)
+
+source("helpers.R")
 
 
 function(input, output, session) {
@@ -13,7 +16,7 @@ function(input, output, session) {
       dt <- base_wine_data
       if(input$box_outliers)
       {
-        dt[-1,]
+        dt<- remove_outliers(dt)
       }
       else
       {
@@ -21,17 +24,34 @@ function(input, output, session) {
       }
     })
     
-    data1 <- reactive({
+    selected_variable <- reactive({
       input$select_var
     })
     
+    plot_Type <- reactive({
+      input$sI_plotType
+    })
+    
+    
     #output serwera do UI
-    output$current_wine_data <- renderTable(processed_wine_data()[[data1()]])
+    output$current_wine_data <- renderTable(processed_wine_data()[[selected_variable()]])
     
     output$summary <-renderTable(summary(processed_wine_data()))
     
+    output$selected_plot <- renderPlot({
+      if(plot_Type() == "Histogram")
+      {
+        hist(as.numeric(processed_wine_data()[[selected_variable()]]), main = "title", col = 'blue', border = 'white', breaks = "FD")
+      }
+      else
+      {
+        plot(processed_wine_data()[[selected_variable()]], processed_wine_data()$quality)
+      }
+    })
+    
+    #TODO generowanie tytułu wykresu
     output$Histogram <- renderPlot({
-      hist(processed_wine_data()[[data1()]], col= 'blue', border = 'white')
+      
     })
 
 }

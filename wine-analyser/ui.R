@@ -21,7 +21,12 @@ fluidPage(
         # Show outputs
         mainPanel(
           tabsetPanel(type = "tab",
-                      tabPanel("Histograms and plots", plotOutput("Histogram")),
+                      tabPanel("Plots", 
+                               selectInput("sI_plotType",
+                                           "Select Plot Type",
+                                           choices = list("Histogram", "Scatter")
+                               ),
+                               plotOutput("selected_plot")),
                       tabPanel("Data",tableOutput("current_wine_data")),
                       tabPanel("Regression coefficients"),
                       tabPanel("Summary", tableOutput("summary"))

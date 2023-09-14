@@ -11,9 +11,9 @@ shiny::runApp("wine-analyser/")
 - [X] Wczytywanie danych ze zbioru
 - [X] Przygotowanie interfejsu do wybierania danych 
 - [ ] Wstępne przetwarzanie -> normalizacja rozkładów
-- [ ] Wstępne przetwarzanie -> usunięcie outliers
+- [X] Wstępne przetwarzanie -> usunięcie outliers
 - [ ] Analiza statystyczna zbioru danych
-- [ ] Dodanie wizualizacji -> histogramy, boxploty etc. przed i po zmianach rozkładów
+- [X] Dodanie wizualizacji -> histogramy, boxploty etc. przed i po zmianach rozkładów
 - [ ] Dodanie wizualizacji -> korelogram
 - [ ] Dodanie wizualizacji -> współczynniki regresji i rozkładu błędu
 
