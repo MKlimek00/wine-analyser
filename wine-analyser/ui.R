@@ -24,11 +24,14 @@ fluidPage(
                       tabPanel("Plots", 
                                selectInput("sI_plotType",
                                            "Select Plot Type",
-                                           choices = list("Histogram", "Scatter")
-                               ),
+                                           choices = list("Histogram", "Scatter", "Boxplot")
+                              ),
                                plotOutput("selected_plot")),
                       tabPanel("Data",tableOutput("current_wine_data")),
-                      tabPanel("Regression coefficients"),
+                      tabPanel("Regression", 
+                               checkboxGroupInput("cb_reg_vars", "Chose variables for calculating regression",
+                                                  choiceNames = list(), choiceValues = list()),
+                               textOutput("test")),
                       tabPanel("Summary", tableOutput("summary"))
                       
                       )
