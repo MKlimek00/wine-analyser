@@ -14,9 +14,19 @@ function(input, output, session) {
     #zmienne reaktywne
     processed_wine_data <- reactive({
       dt <- base_wine_data
+      dt <- na.omit(dt)
+      
       if(input$box_outliers)
       {
         dt<- remove_outliers(dt, selected_variable())
+      }
+      if(input$box_log)
+      {
+        dt<- log_transform(dt, selected_variable())
+      }
+      if(input$box_norm)
+      {
+        dt<- scale_standard(dt, selected_variable())
       }
       else
       {
