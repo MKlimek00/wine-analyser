@@ -11,9 +11,12 @@ function(input, output, session) {
     
     updateSelectInput(session, "select_var", choices=colnames(base_wine_data))
     
+    updateCheckboxGroupInput(session, "cb_reg_vars", choices = colnames(base_wine_data))
+    
     #zmienne reaktywne
     processed_wine_data <- reactive({
       dt <- base_wine_data
+
       dt <- na.omit(dt)
       
       if(input$box_outliers)
@@ -32,6 +35,7 @@ function(input, output, session) {
       {
         dt
       }
+
     })
     
     selected_variable <- reactive({
@@ -48,20 +52,17 @@ function(input, output, session) {
     
     output$summary <-renderTable(summary(processed_wine_data()))
     
+    #TODO kosmetyka wykresów
     output$selected_plot <- renderPlot({
-      if(plot_Type() == "Histogram")
-      {
-        hist(as.numeric(processed_wine_data()[[selected_variable()]]), main = "title", col = 'blue', border = 'white', breaks = "FD")
-      }
-      else
-      {
-        plot(processed_wine_data()[[selected_variable()]], processed_wine_data()$quality)
-      }
+      switch(plot_Type(),
+             "Histogram" = hist(as.numeric(processed_wine_data()[[selected_variable()]]), 
+                                main = " ", col = 'blue', border = 'white', breaks = "FD"),
+             "Scatter" = plot(processed_wine_data()[[selected_variable()]], processed_wine_data()$quality),
+             "Boxplot" = boxplot(processed_wine_data()[[selected_variable()]])
+             )
     })
     
-    #TODO generowanie tytułu wykresu
-    output$Histogram <- renderPlot({
-      
+    output$test <- renderText({
+      length(input$cb_reg_vars)
     })
-
 }
