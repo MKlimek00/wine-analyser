@@ -10,3 +10,18 @@ remove_outliers <-function(dataframe, name)
     
   return(dataframe)
 }
+
+log_transform <-function(dataframe, name) {
+  dataframe[[name]] <- log(dataframe[[name]] + 1)
+  
+  return(dataframe)
+}
+
+scale_standard <-function(dataframe, name) {
+  stddev <- sd(dataframe[[name]])
+  mean_ <- mean(dataframe[[name]])
+  
+  dataframe[[name]] <- (dataframe[[name]] - mean_) / stddev
+  
+  return(dataframe)
+}
