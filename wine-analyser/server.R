@@ -11,7 +11,7 @@ function(input, output, session) {
 
   updateSelectInput(session, "select_var", choices = colnames(base_wine_data))
 
-  updateCheckboxGroupInput(session, "cb_reg_vars", choices = colnames(base_wine_data))
+  updateCheckboxGroupInput(session, "cb_reg_vars", choices = head(colnames(base_wine_data), -1))
 
   # zmienne reaktywne
   processed_wine_data <- reactive({

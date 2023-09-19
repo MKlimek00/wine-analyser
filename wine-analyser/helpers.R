@@ -26,8 +26,7 @@ scale_standard <- function(dataframe, name) {
 }
 
 run_regression <- function(dataframe, names) {
-  l2 <- str_split(names, " ")
-  d2 <- dataframe[[unlist(l2)[[1]]]]
+  d2 <- subset(dataframe, select = c(names, "quality"))
 
-  regr_model <- lm(data = dataframe, quality ~ .) ## TODO: Dynamicznie po wybranych kolumnach
+  regr_model <- lm(data = d2, quality ~ .)
 }
