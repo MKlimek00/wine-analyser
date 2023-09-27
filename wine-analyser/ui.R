@@ -1,45 +1,44 @@
 library(shiny)
+library(shinythemes)
+
 
 # Define UI for application that draws a histogram
 fluidPage(
+  theme = shinytheme("lumen"),
 
     # Application title
-    titlePanel("Wine Analyser"),
-
-    # Interactive parts
-    sidebarLayout(
-        # get inputs
-        sidebarPanel(
-            selectInput("select_var", "Choose variable", c()),
-            br(),
-            checkboxInput("box_outliers", "Remove Outliers"),
-            checkboxInput("box_norm", "Normalize variable"),
-            checkboxInput("box_log", "Change to log"),
-            checkboxInput("box_regression", "Calculate regression"),
-        ),
-
-        # Show outputs
-        mainPanel(
-            tabsetPanel(
+    titlePanel("Wine Analyser, by: Maciej Klimek & Mateusz Stryjek"),
+    tabsetPanel(
                 type = "tab",
                 tabPanel(
-                    "Plots",
-                    selectInput("sI_plotType",
-                        "Select Plot Type",
-                        choices = list("Histogram", "Scatter", "Boxplot")
-                    ),
-                    plotOutput("selected_plot")
+                    "Preview",
+                    fluidRow(column(6, selectInput("select_var", "Choose variable", c()),
+                                    checkboxInput("box_outliers", "Remove Outliers"),
+                                    checkboxInput("box_norm", "Normalize variable"),
+                                    checkboxInput("box_log", "Change to log")),
+                             column(6, selectInput("sI_plotType",
+                                                   "Select Plot Type",
+                                                   choices = list("Histogram", "Scatter", "Boxplot"))),
+                    fluidRow(plotOutput("selected_plot")))
+                      
                 ),
-                tabPanel("Data", tableOutput("current_wine_data")),
                 tabPanel(
                     "Regression",
-                    checkboxGroupInput("cb_reg_vars", "Choose variables for calculating regression",
-                        choiceNames = list(), choiceValues = list()
-                    ),
+                    fluidRow(
+                      column(3,checkboxGroupInput("cb_reg_vars", "Choose variables",
+                                                choiceNames = list(), choiceValues = list()
+                    )),
+                    column(3,checkboxGroupInput("cb_outl", "Remove outliers",
+                                                choiceNames = list(), choiceValues = list()
+                    )),
+                    column(3,checkboxGroupInput("cb_norm", "Normalize Variable",
+                                                choiceNames = list(), choiceValues = list()
+                    )),
+                    column(3, checkboxGroupInput("cb_log", "Logarithmize variable",
+                                                 choiceNames = list(), choiceValues = list()
+                    ))),
+                    textOutput("test"),
                     verbatimTextOutput("regression_result")
-                ),
-                tabPanel("Summary", tableOutput("summary"))
+                )
             )
-        )
-    )
 )
