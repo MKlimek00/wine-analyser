@@ -103,7 +103,10 @@ function(input, output, session) {
     summary(regression_wine_data())
     })
   
-  output$regr_plot <- renderPlot({plot(regression_wine_data())})
+  output$regr_plot <- renderPlot({
+    par(mfrow = c(2,2))
+    plot(regression_wine_data())
+    })
   
 }
 
