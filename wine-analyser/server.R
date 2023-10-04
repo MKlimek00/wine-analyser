@@ -5,7 +5,7 @@ source("helpers.R")
 
 function(input, output, session) {
   # jednorazowe rzeczy na początek
-  base_wine_data <- read.csv("../winequality-red.csv", sep = ",", fill = FALSE)
+  base_wine_data <- read.csv("./winequality-red.csv", sep = ",", fill = FALSE)
   base_wine_data <- base_wine_data[complete.cases(base_wine_data),]
   
   names <- head(colnames(base_wine_data),-1)
@@ -58,7 +58,7 @@ function(input, output, session) {
   })
   
   regression_logs <- reactive({
-    input$cb_log
+      input$cb_log
   })
   
   regression_wine_data <- reactive({
